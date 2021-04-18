@@ -1,2 +1,6 @@
-# research-work
-My own research work at university
+# Репозиторий НИРС
+Автор: Кисель Виталий Максимович
+
+# Установка зависимостей и развёртка проекта
+Создание окружения `python -m venv venv`  
+Зависимости `pip install -r requirements.txt`  
