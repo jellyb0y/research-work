@@ -21,10 +21,6 @@ x_length = 10
 x_arr = np.arange(length) / x_length
 y_arr = func(x_arr)
 
-
-# %%
-plt.plot(x_arr, y_arr)
-
 # %% [markdown]
 # #### Создаём датасет для модели
 
@@ -107,4 +103,4 @@ plt.plot(train_x_arr, train_predictions)
 plt.plot(test_x_arr, test_labels_)
 plt.plot(test_x_arr, test_predictions)
 
-
+plt.show()
