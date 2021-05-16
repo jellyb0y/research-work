@@ -1,36 +1,23 @@
-#!./venv/bin/python
-
-# To add a new cell, type '# %%'
-# To add a new markdown cell, type '# %% [markdown]'
-# %%
 import numpy as np
 from tensorflow.keras import Sequential, layers
 from tensorflow.data import Dataset
 import matplotlib.pyplot as plt
 
-# %% [markdown]
-# #### Определяем функцию, которую будем прогнозировать
-# y = sin(x) * exp(-x)
+import matplotlib
+matplotlib.use('Agg')
 
-# %%
 func = lambda x: np.sin(x) * np.cos(x * 0.5) * np.exp(-x * 0.05)
 
-
-# %%
 length = 1000
 x_length = 10
 
 x_arr = np.arange(length) / x_length
 y_arr = func(x_arr)
 
-# %% [markdown]
-# #### Создаём датасет для модели
-
-# %%
 train_length = int(0.7 * length)
 test_length = length - train_length
 
-input_interval = 20
+input_interval = 30
 output_offset = 10
 
 datasets_train = []
@@ -55,8 +42,6 @@ for i in range(train_length, train_length + test_length - output_offset - input_
 datasets_test = np.array(datasets_test)
 labels_test = np.array(labels_test)
 
-
-# %%
 BATCH_SIZE = 10
 BUFFER_SIZE = 1000
 
@@ -66,8 +51,6 @@ train_univariate = train_univariate.shuffle(BUFFER_SIZE).batch(BATCH_SIZE).repea
 val_univariate = Dataset.from_tensor_slices((datasets_test, labels_test))
 val_univariate = val_univariate.batch(BATCH_SIZE).repeat()
 
-
-# %%
 model = Sequential()
 
 model.add(layers.Dense(input_interval, input_shape=(input_interval,)))
@@ -77,18 +60,14 @@ model.add(layers.Dense(1))
 
 model.compile(optimizer='SGD', loss='mean_squared_error')
 
-
-# %%
 model.fit(
     train_univariate,
-    epochs=100,
+    epochs=400,
     steps_per_epoch=10,
     validation_data=val_univariate,
     validation_steps=10
 )
 
-
-# %%
 train_predictions = np.array([value[0] for value in model.predict(datasets_train)])
 train_labels_ = np.array([value[0] for value in labels_train])
 train_x_arr = x_arr[input_interval + output_offset:train_length]
@@ -97,8 +76,6 @@ test_predictions = np.array([value[0] for value in model.predict(datasets_test)]
 test_labels_ = np.array([value[0] for value in labels_test])
 test_x_arr = x_arr[train_length + input_interval + output_offset:]
 
-
-# %%
 plt.plot(train_x_arr, train_labels_)
 plt.plot(train_x_arr, train_predictions)
 

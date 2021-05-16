@@ -1,0 +1,40 @@
+{
+    "name": "Base-network",
+    "version": "1.0.0",
+    "description": "Base network",
+    "documentation_path": false,
+    "author": {
+        "name": "Vitaly Kisel AKA jellyb0y",
+        "email": "kisel@internet.ru"
+    },
+    "url": false,
+    "scripts": [],
+    "dependencies": {
+        "numpy": "1.19.5",
+        "future": "0.18.2",
+        "mock": "4.0.3",
+        "h5py": "2.10.0",
+        "keras_preprocessing": "1.1.1",
+        "keras_applications": "1.0.8",
+        "gast": "0.2.2",
+        "futures": "3.1.1",
+        "protobuf": "3.17.0",
+        "pybind11": "2.6.2",
+        "tensorflow": {
+            "source": "https://developer.download.nvidia.com/compute/redist/jp/v45",
+            "version": "2.4.0+nv21.4"
+        },
+        "matplotlib": "2.1.1",
+        "Keras": "2.4.3",
+        "absl-py": "0.12.0",
+        "wrapt": "1.12.1",
+        "opt_einsum": "3.3.0",
+        "astunparse": "1.6.3",
+        "termcolor": "1.1.0",
+        "flatbuffers": "2.0"
+    },
+    "dev_dependencies": {},
+    "python_requires": ">=3.6.9",
+    "classifiers": [],
+    "include_package_data": false
+}
