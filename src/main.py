@@ -1,10 +1,10 @@
+import matplotlib
+matplotlib.use('Agg')
+
 import numpy as np
 from tensorflow.keras import Sequential, layers
 from tensorflow.data import Dataset
 import matplotlib.pyplot as plt
-
-import matplotlib
-matplotlib.use('Agg')
 
 func = lambda x: np.sin(x) * np.cos(x * 0.5) * np.exp(-x * 0.05)
 
@@ -60,6 +60,7 @@ model.add(layers.Dense(1))
 
 model.compile(optimizer='SGD', loss='mean_squared_error')
 
+"""
 model.fit(
     train_univariate,
     epochs=400,
@@ -67,6 +68,7 @@ model.fit(
     validation_data=val_univariate,
     validation_steps=10
 )
+"""
 
 train_predictions = np.array([value[0] for value in model.predict(datasets_train)])
 train_labels_ = np.array([value[0] for value in labels_train])
